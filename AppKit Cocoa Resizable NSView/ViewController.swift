@@ -9,22 +9,120 @@
 import Cocoa
 import AutoLayoutProxy
 
+//这个是主要的
 class ViewController: NSViewController {
+    var ivTest = NSImageView()
 
     private let draggableResizableView = DraggableResizableView()
+    // 生成一个  drag resizeable view
 
+    // 这个 loadView 是什么鬼
+//    加了一个 drag resizeable view + 一个按钮进去
     override func loadView() {
         view        = NSView()
         view.size >= 500
-        view.addSubview(NSButton(title: "RESET", target: self, action: #selector(resetFrame))) {
+        view.addSubview(NSButton(title: "重置", target: self, action: #selector(resetFrame))) {
             $0.centerX == $1.centerX
-        }
+        }// 这是直接加了个按钮?
         view.addSubview(draggableResizableView)
+        
+        
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         perform(#selector(resetFrame), with: nil, afterDelay: 1)
+        // 这个 perform 是什么
+        
+//        add_local_image() // 本地文件系统
+//        add_network_image() // 网络
+//        add_inner_image() // 代码内
+        add_asset_image()
+    }
+    
+    func add_asset_image(){
+        self.view.addSubview(self.ivTest)
+        self.ivTest.wantsLayer = true
+        self.ivTest.layer?.backgroundColor = NSColor.systemPink.cgColor
+        self.ivTest.layer?.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        self.ivTest.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        
+        
+        let image = NSImage(named: NSImage.Name("fu"))
+        guard image != nil else {
+            print("错啦")
+            return
+        }
+        
+        if (image!.isValid == true){
+            print("valid")
+            print("image size \(image!.size.width):\(image!.size.height)")
+            self.ivTest.image = image
+        } else {
+            print("not valid")
+        }
+    }
+    
+    func add_inner_image(){
+        self.view.addSubview(self.ivTest)
+        self.ivTest.wantsLayer = true
+        self.ivTest.layer?.backgroundColor = NSColor.systemPink.cgColor
+        self.ivTest.layer?.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        self.ivTest.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        
+        let str = "luisa-brimble-gBNRcViwHwQ-unsplash.jpg"
+        let b = Bundle.main.path(forResource: str, ofType: nil)
+        
+        let image: NSImage = NSImage(contentsOfFile: b!)!
+        
+        if (image.isValid == true){
+            print("valid")
+            print("image size \(image.size.width):\(image.size.height)")
+            self.ivTest.image = image
+        } else {
+            print("not valid")
+        }
+    }
+    
+    func add_network_image(){
+        self.view.addSubview(self.ivTest)
+        self.ivTest.wantsLayer = true
+        self.ivTest.layer?.backgroundColor = NSColor.systemPink.cgColor
+        self.ivTest.layer?.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        self.ivTest.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+
+        let url = URL(string: "https://i.redd.it/e1o0wia7vbn51.jpg")
+        let image: NSImage = NSImage(contentsOf: url!)!
+        
+        if (image.isValid == true){
+            print("valid")
+            print("image size \(image.size.width):\(image.size.height)")
+            self.ivTest.image = image
+        } else {
+            print("not valid")
+        }
+    }
+    
+    func add_local_image(){
+        self.view.addSubview(self.ivTest)
+        self.ivTest.wantsLayer = true
+        self.ivTest.layer?.backgroundColor = NSColor.systemPink.cgColor
+        self.ivTest.layer?.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+        self.ivTest.frame = NSRect(x: 0, y: 0, width: 100, height: 100)
+
+        let manager = FileManager.default
+        var url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        url = url?.appendingPathComponent("night.jpg")
+        
+        let image = NSImage(byReferencing: url!)
+        if (image.isValid == true){
+            print("valid")
+            print("image size \(image.size.width):\(image.size.height)")
+            self.ivTest.image = image
+        } else {
+            print("not valid")
+        }
     }
 
     @objc func resetFrame() {

@@ -8,6 +8,8 @@
 
 import Cocoa
 
+// 这个好像只是 resize
+// 大部分代码是一致的
 class ResizableView: NSView {
 
     private let resizableArea   = CGFloat(2)
@@ -17,7 +19,7 @@ class ResizableView: NSView {
         super.init(frame: frameRect)
         backgroundColor = .red
         borderColor     = .white
-        borderWidth     = resizableArea
+        borderWidth     = resizableArea // 边框宽度和可抓的区域一致
     }
 
     override func updateTrackingAreas() {
@@ -71,9 +73,12 @@ class ResizableView: NSView {
         case .top:
             size.height += verticalDistanceDragged
             draggedPoint = locationInView
+            // 是顶部就改高度
         case .left:
             origin.x    += horizontalDistanceDragged
             size.width  -= horizontalDistanceDragged
+            // - width 可以理解，但是为什么是 + x？
+            // 应该是 - x 吧？
         case .bottom:
             origin.y    += verticalDistanceDragged
             size.height -= verticalDistanceDragged

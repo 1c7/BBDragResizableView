@@ -8,6 +8,7 @@
 
 #if canImport(Cocoa)
 import Cocoa
+// 怪不得呢，原来都在这里
 
 // MARK: - Properties
 public extension NSView {
@@ -23,6 +24,7 @@ public extension NSView {
             layer?.backgroundColor = newValue?.cgColor
         }
     }
+    // 直接设置背景颜色
 
     var origin: CGPoint {
         get {
