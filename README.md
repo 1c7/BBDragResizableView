@@ -1,14 +1,18 @@
-# BBDragResizableView
-A sample project to show how to create a draggable and resizable NSView in Cocoa framework in AppKit using Xcode 11.4 on MacOS 10.15 using Swift 5.2
+## macOS App
+这是一个 macOS 项目，使用 XCode 和 Swift 开发。   
+fork 自: https://github.com/bibinjacobpulickal/BBDragResizableView   
 
----
-![Platform](https://img.shields.io/badge/platform-MacOS-blue.svg?style=flat)
-[![MacOS](https://img.shields.io/badge/MacOS-10.15-green.svg?style=flat)](https://www.apple.com/in/macos/catalina/)
-[![Xcode](https://img.shields.io/badge/XCode-11.4-blue.svg)](https://developer.apple.com/xcode/)
-[![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg?style=flat)](https://developer.apple.com/swift/)
+## 说明
+本库只对创建者有用  
 
-## Working Example
-<img src="/Screenshots/BBDragResizableView.gif" />
+## 目的
+* 做一个可以拖动，可以缩放的方块 （可以理解为 web 开发里的 `<div></div>`）       
+* 以及做各种实验，来学习 macOS 桌面程序的开发     
 
-## Example
-Download the project.
+## 意义
+为之后更复杂的功能做铺垫
+
+## fork 之后的改动：
+1. 显示不同来源的图片（本地，网络，包内，Assets.xcassets 内)
+2. 让方块移动时可以贴边
+3. 增加了手势检测
