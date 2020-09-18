@@ -35,12 +35,15 @@ class ViewController: NSViewController {
         perform(#selector(resetFrame), with: nil, afterDelay: 1)
         // 这个 perform 是什么
         
+        
+        // 图片的4个实验
 //        add_local_image() // 本地文件系统
 //        add_network_image() // 网络
 //        add_inner_image() // 代码内
-        add_asset_image()
+        add_asset_image() // asset 内
     }
     
+    // 核心 NSImage 直接用 asset 里的图片
     func add_asset_image(){
         self.view.addSubview(self.ivTest)
         self.ivTest.wantsLayer = true
@@ -64,6 +67,7 @@ class ViewController: NSViewController {
         }
     }
     
+    // 核心: Bundle for resource
     func add_inner_image(){
         self.view.addSubview(self.ivTest)
         self.ivTest.wantsLayer = true
@@ -85,6 +89,7 @@ class ViewController: NSViewController {
         }
     }
     
+    // 核心: 加载 URL 图片
     func add_network_image(){
         self.view.addSubview(self.ivTest)
         self.ivTest.wantsLayer = true
@@ -104,6 +109,7 @@ class ViewController: NSViewController {
         }
     }
     
+    // 核心: file mangage 拼接连接 + 取消 sandbox
     func add_local_image(){
         self.view.addSubview(self.ivTest)
         self.ivTest.wantsLayer = true
